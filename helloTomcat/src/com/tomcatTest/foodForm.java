@@ -35,7 +35,7 @@ public class foodForm extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
 
         PrintWriter out = response.getWriter();
-        String title = "使用 GET方法读取表单数据";
+        String title = "输入成功！";
         // 处理中文
         String name =new String(request.getParameter("cook-name").getBytes("ISO8859-1"),"UTF-8");
         String material =new String(request.getParameter("material").getBytes("ISO8859-1"),"UTF-8");        
