@@ -53,7 +53,7 @@ public class foodForm extends HttpServlet {
             "</ul>\n" +
             "</body></html>");
         
-        File file = new File("E:\\User\\Guanyu\\learn\\helloTomcat\\test.txt");
+        File file = new File("E:\\User\\Guanyu\\learn\\git\\hello-github\\helloTomcat\\test.txt");
         if(!file.exists()){
         	file.createNewFile();
         	System.out.print("创建文件");
