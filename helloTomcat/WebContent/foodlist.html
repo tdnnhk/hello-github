@@ -3,14 +3,16 @@
 <head>
 <meta charset="UTF-8">
 <title>Cook Book</title>
-<script src="http://cdn.static.runoob.com/libs/jquery/1.10.2/jquery.min.js">
-</script>
-<script type="text/javascript">
+<script src="http://cdn.static.runoob.com/libs/jquery/1.10.2/jquery.min.js" type="text/javascript">
+//这个script里面的日志都没有反应，有可能是在script里面没有记录？
+console.log("这里3");
 $("#impor").click(function(){//点击导入按钮，使files触发点击事件，然后完成读取文件的操作。
-    $("#files").click();
+    //$("#files").click();
+	console.log("这里2");
 });
 
 function impor(){
+	console.log("这里1");
 var selectedFile = document.getElementById("E:\User\Guanyu\learn\git\hello-github\helloTomcat\test.txt").files[0];//获取读取的File对象
 var name = selectedFile.name;//读取选中文件的文件名
 var size = selectedFile.size;//读取选中文件的大小
@@ -24,8 +26,14 @@ reader.onload = function(){
 };
 }
 </script>
+
+
 </head>
 <body>
+<script type="text/javascript">
+//在这里面却有记录
+console.log("这里33");
+</script> 
 	<h1>test：</h1>
 	<input type="button" id="impor" value="导入"/>
 </body>

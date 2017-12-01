@@ -46,9 +46,9 @@ public class foodForm extends HttpServlet {
             "<body bgcolor=\"#f0f0f0\">\n" +
             "<h1 align=\"center\">" + title + "</h1>\n" +
             "<ul>\n" +
-            "  <li><b>站点名</b>："
+            "  <li><b>菜名</b>："
             + name + "\n" +
-            "  <li><b>吃的</b>："
+            "  <li><b>材料</b>："
             + material + "\n" +
             "</ul>\n" +
             "</body></html>");
