@@ -35,11 +35,11 @@ public class foodForm extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
 
         PrintWriter out = response.getWriter();
-        String title = "输入成功！";
+        //String title = "输入成功！";
         // 处理中文
         String name =new String(request.getParameter("cook-name").getBytes("ISO8859-1"),"UTF-8");
         String material =new String(request.getParameter("material").getBytes("ISO8859-1"),"UTF-8");        
-        String docType = "<!DOCTYPE html> \n";
+/*        String docType = "<!DOCTYPE html> \n";
         out.println(docType +
             "<html>\n" +
             "<head><title>" + title + "</title></head>\n" +
@@ -52,7 +52,7 @@ public class foodForm extends HttpServlet {
             + material + "\n" +
             "</ul>\n" +
             "</body></html>");
-        
+        */
         File file = new File("E:\\User\\Guanyu\\learn\\git\\hello-github\\helloTomcat\\test.txt");
         if(!file.exists()){
         	file.createNewFile();
