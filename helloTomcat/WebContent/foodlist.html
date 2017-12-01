@@ -5,25 +5,45 @@
 <title>Cook Book</title>
 <script src="https://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js" type="text/javascript" >console.log("这里0");</script>
 <script type="text/javascript">
-console.log("这里1");
-function btnAction()
-{ 
-	console.log("这里123");
-	$("#imporBtn").attr("act","123");
-}
 $(function(){
-	  $("button").click(function(){
-		  $("#imporBtn").attr("actt","123");
-	  });
+	$("button").click(function(){
+		/* var selectedFile = document.getElementById("E:\User\Guanyu\learn\git\hello-github\helloTomcat\test.txt");//获取读取的File对象
+		//var name = selectedFile.name;//读取选中文件的文件名
+		//var size = selectedFile.size;//读取选中文件的大小
+		//console.log("文件名:"+name+"大小："+size);
+
+		var reader = new FileReader();//这里是核心！！！读取操作就是由它完成的。
+		reader.readAsText(selectedFile);//读取文件的内容
+
+		reader.onload = function(){
+		    console.log(this.result);//当读取完成之后会回调这个函数，然后此时文件的内容存储到了result中。直接操作即可。
+		}; */
+		
+/* 	      //var file = document.getElementById("E:\User\Guanyu\learn\git\hello-github\helloTomcat\test.txt");
+	      var reader = new FileReader("E:\\User\\Guanyu\\learn\\git\\hello-github\\helloTomcat\\test.txt");
+
+	      //将文件以文本形式读入页面
+	      //reader.readAsText(file, "UTF-8");
+	      reader.onload = function (e) {
+	        var fileText = e.target.result.split("\n");
+	        angular.forEach(fileText, function (data, index) {
+	          if (data.length) {
+	            data = data.split(',')
+	            $scope.persons.push(_.zipObject(['position', 'calculate', 'maxCalculate', 'minCalculate'], data));
+	          }
+	        });
+	        $scope.$apply();
+	        console.log("这里");
+	      } */
+	        
 	});
+});
 	</script>
 </head>
 <body>
-<script type="text/javascript">
-//在这里面却有记录
-console.log("这里313");
-</script> 
 	<h1>test：</h1>
-	<button type="button" id="imporBtn" onclick="btnAction()">导入</button>
+	<form action="foodFormRead" method="POST">
+		<button type=submit id="imporBtn">导入</button>
+	</form>
 </body>
 </html>
