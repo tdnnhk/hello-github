@@ -41,13 +41,14 @@ public class FoodFormRead extends HttpServlet {
 		InputStreamReader reader = new InputStreamReader(new FileInputStream(fileName),"UTF-8");
 		BufferedReader br = new BufferedReader(reader);
 		String line ="";
-		while(br.readLine() != null) {
-			line = br.readLine();
+		//每次调用readLine()就会跳到下一行，所以这里就刚好错过了菜名
+		while((line = br.readLine()) != null) {
+			//line = br.readLine();
 			//String lines =new String(line.getBytes("ISO8859-1"),"UTF-8");
 			System.out.println(line);
-			out.println(line+"\n");
+			out.println(line+"<br>");
 		}
-		out.println("test");
+		//out.println("test");
 		
 	}
 
