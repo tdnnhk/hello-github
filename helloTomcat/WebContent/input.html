@@ -5,15 +5,19 @@
 		<title>输入菜谱</title>
 	</head>
 	<body>
-		<form action="foodForm" method="POST">
+		<form action="FoodMenu" method="POST">
 			<ul>
 				<li>
-					菜谱名：<input type="text" name="cook-name"/>
+					菜名：<input type="text" name="cook-name"/>
 				</li>
 				<li>
 					材料：
 					<textarea class="material" name="material"></textarea>
 				</li>
+<!-- 				<li>
+                                        做法：
+                    <textarea class="method" name=""method""></textarea>
+                </li> -->
 			</ul>
 		<input type="submit" value="提交菜谱">
 		<input type="reset" value="清除">

@@ -12,31 +12,32 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+
 /**
- * Servlet implementation class HelloForm
+ * Servlet implementation class FoodMenu
  */
-@WebServlet("/foodForm")
-public class foodForm extends HttpServlet {
-    private static final long serialVersionUID = 1L;
+//@WebServlet("/FoodMenu")
+public class FoodMenu extends HttpServlet {
+	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public foodForm() {
+    public FoodMenu() {
         super();
         // TODO Auto-generated constructor stub
     }
 
-    /**
-     * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
-     */
-    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        // ÉèÖÃÏìÓ¦ÄÚÈİÀàĞÍ
+	/**
+	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
+	 */
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	 // è®¾ç½®å“åº”å†…å®¹ç±»å‹
         response.setContentType("text/html;charset=UTF-8");
 
         PrintWriter out = response.getWriter();
-        String title = "ÊäÈë³É¹¦£¡";
-        // ´¦ÀíÖĞÎÄ
+        String title = "è¾“å…¥æˆåŠŸï¼";
+        // å¤„ç†ä¸­æ–‡
         String name =new String(request.getParameter("cook-name").getBytes("ISO8859-1"),"UTF-8");
         String material =new String(request.getParameter("material").getBytes("ISO8859-1"),"UTF-8");        
         String docType = "<!DOCTYPE html> \n";
@@ -46,42 +47,45 @@ public class foodForm extends HttpServlet {
             "<body bgcolor=\"#f0f0f0\">\n" +
             "<h1 align=\"center\">" + title + "</h1>\n" +
             "<ul>\n" +
-            "  <li><b>²ËÃû</b>£º"
+            "  <li><b>èœå</b>ï¼š"
             + name + "\n" +
-            "  <li><b>²ÄÁÏ</b>£º"
+            "  <li><b>ææ–™</b>ï¼š"
             + material + "\n" +
             "</ul>\n" +
             "</body></html>");
         
         File file = new File("D:\\learn\\projects\\hello-github\\test.txt");
         if(!file.exists()){
-        	file.createNewFile();
-        	System.out.print("´´½¨ÎÄ¼ş");
+            file.createNewFile();
+            System.out.print("åˆ›å»ºæ–‡ä»¶");
         }
         FileOutputStream fop = new FileOutputStream(file,true);
         OutputStreamWriter writer = new OutputStreamWriter(fop, "UTF-8");
         
-        writer.append("²ËÃû£º" + name);
-        // Ğ´Èëµ½»º³åÇø        
+        writer.append("èœåï¼š" + name);
+        // å†™å…¥åˆ°ç¼“å†²åŒº        
         writer.append("\r\n");
-        //»»ĞĞ
+        //æ¢è¡Œ
         
-        writer.append("²ÄÁÏ£º" + material);
+        writer.append("ææ–™ï¼š" + material);
         writer.append("\r\n");
         writer.append("\r\n");
         writer.append("\r\n");
-        // Ë¢ĞÂ»º´æ³å,Ğ´Èëµ½ÎÄ¼ş,Èç¹ûÏÂÃæÒÑ¾­Ã»ÓĞĞ´ÈëµÄÄÚÈİÁË,Ö±½ÓcloseÒ²»áĞ´Èë
+        // åˆ·æ–°ç¼“å­˜å†²,å†™å…¥åˆ°æ–‡ä»¶,å¦‚æœä¸‹é¢å·²ç»æ²¡æœ‰å†™å…¥çš„å†…å®¹äº†,ç›´æ¥closeä¹Ÿä¼šå†™å…¥
 
         writer.close();
-        //¹Ø±ÕĞ´ÈëÁ÷,Í¬Ê±»á°Ñ»º³åÇøÄÚÈİĞ´ÈëÎÄ¼ş,ËùÒÔÉÏÃæµÄ×¢ÊÍµô
+        //å…³é—­å†™å…¥æµ,åŒæ—¶ä¼šæŠŠç¼“å†²åŒºå†…å®¹å†™å…¥æ–‡ä»¶,æ‰€ä»¥ä¸Šé¢çš„æ³¨é‡Šæ‰
         
         fop.close();
-        // ¹Ø±ÕÊä³öÁ÷,ÊÍ·ÅÏµÍ³×ÊÔ´
-        
-    }
-    
-    // ´¦Àí POST ·½·¨ÇëÇóµÄ·½·¨
-    public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        doGet(request, response);
-    }
+        // å…³é—­è¾“å‡ºæµ,é‡Šæ”¾ç³»ç»Ÿèµ„æº
+	}
+
+	/**
+	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+	 */
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		// TODO Auto-generated method stub
+		doGet(request, response);
+	}
+
 }

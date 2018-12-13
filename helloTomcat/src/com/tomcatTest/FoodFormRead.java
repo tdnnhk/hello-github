@@ -1,4 +1,4 @@
-package com.tomcatTest;
+ï»¿package com.tomcatTest;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -16,7 +16,7 @@ import javax.servlet.http.HttpServletResponse;
 /**
  * Servlet implementation class FoodFormRead
  */
-@WebServlet("/FoodFormRead")
+//@WebServlet("/FoodFormRead")
 public class FoodFormRead extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
@@ -41,7 +41,7 @@ public class FoodFormRead extends HttpServlet {
 		InputStreamReader reader = new InputStreamReader(new FileInputStream(fileName),"UTF-8");
 		BufferedReader br = new BufferedReader(reader);
 		String line ="";
-		//Ã¿´Îµ÷ÓÃreadLine()¾Í»áÌøµ½ÏÂÒ»ĞĞ£¬ËùÒÔÕâÀï¾Í¸ÕºÃ´í¹ıÁË²ËÃû
+		//æ¯æ¬¡è°ƒç”¨readLine()å°±ä¼šè·³åˆ°ä¸‹ä¸€è¡Œï¼Œæ‰€ä»¥è¿™é‡Œå°±åˆšå¥½é”™è¿‡äº†èœå
 		while((line = br.readLine()) != null) {
 			//line = br.readLine();
 			//String lines =new String(line.getBytes("ISO8859-1"),"UTF-8");
