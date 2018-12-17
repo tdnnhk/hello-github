@@ -35,6 +35,8 @@ public class FoodMenu extends HttpServlet {
 	 // 设置响应内容类型
         response.setContentType("text/html;charset=UTF-8");
 
+        DatabaseOperation dbOperation = new DatabaseOperation();
+        
         PrintWriter out = response.getWriter();
         String title = "输入成功！";
         // 处理中文
@@ -53,8 +55,12 @@ public class FoodMenu extends HttpServlet {
             + material + "\n" +
             "</ul>\n" +
             "</body></html>");
+        FoodModel food = new FoodModel(name, material, "test");
+        //food.setTitle(name);
+        //food.setMaterial(material);
+        DatabaseOperation.insert(food);
         
-        File file = new File("D:\\learn\\projects\\hello-github\\test.txt");
+        /*File file = new File("D:\\learn\\projects\\hello-github\\test.txt");
         if(!file.exists()){
             file.createNewFile();
             System.out.print("创建文件");
@@ -76,8 +82,10 @@ public class FoodMenu extends HttpServlet {
         writer.close();
         //关闭写入流,同时会把缓冲区内容写入文件,所以上面的注释掉
         
-        fop.close();
+        fop.close();*/
         // 关闭输出流,释放系统资源
+        
+        
 	}
 
 	/**

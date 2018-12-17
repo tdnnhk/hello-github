@@ -1,11 +1,17 @@
 package com.tomcatTest;
 
 public class FoodModel {
+    private String Id;
     private String title;
     private String material;
     private String method;
     
-    
+    FoodModel(String title, String material, String method){
+        this.Id = null; //default
+        this.title = title;
+        this.material = material;
+        this.method = method;
+    }
     
     public String getTitle() {
         return title;
