@@ -6,12 +6,12 @@ public class FoodModel {
     private String material;
     private String method;
     
-    FoodModel(String title, String material, String method){
+/*    FoodModel(){
         this.Id = null; //default
         this.title = title;
         this.material = material;
         this.method = method;
-    }
+    }*/
     
     public String getTitle() {
         return title;

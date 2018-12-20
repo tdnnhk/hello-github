@@ -35,13 +35,14 @@ public class FoodMenu extends HttpServlet {
 	 // 设置响应内容类型
         response.setContentType("text/html;charset=UTF-8");
 
-        DatabaseOperation dbOperation = new DatabaseOperation();
+        //DatabaseOperation dbOperation = new DatabaseOperation();
         
         PrintWriter out = response.getWriter();
         String title = "输入成功！";
         // 处理中文
         String name =new String(request.getParameter("cook-name").getBytes("ISO8859-1"),"UTF-8");
-        String material =new String(request.getParameter("material").getBytes("ISO8859-1"),"UTF-8");        
+        String material =new String(request.getParameter("material").getBytes("ISO8859-1"),"UTF-8");  
+        String method =new String(request.getParameter("method").getBytes("ISO8859-1"),"UTF-8");        
         String docType = "<!DOCTYPE html> \n";
         out.println(docType +
             "<html>\n" +
@@ -53,39 +54,16 @@ public class FoodMenu extends HttpServlet {
             + name + "\n" +
             "  <li><b>材料</b>："
             + material + "\n" +
+            "  <li><b>做法</b>："
+            + method + "\n" +
             "</ul>\n" +
             "</body></html>");
-        FoodModel food = new FoodModel(name, material, "test");
-        //food.setTitle(name);
-        //food.setMaterial(material);
+        FoodModel food = new FoodModel();
+        food.setTitle(name);
+        food.setMaterial(material);
+        food.setMethod(method);
         DatabaseOperation.insert(food);
-        
-        /*File file = new File("D:\\learn\\projects\\hello-github\\test.txt");
-        if(!file.exists()){
-            file.createNewFile();
-            System.out.print("创建文件");
-        }
-        FileOutputStream fop = new FileOutputStream(file,true);
-        OutputStreamWriter writer = new OutputStreamWriter(fop, "UTF-8");
-        
-        writer.append("菜名：" + name);
-        // 写入到缓冲区        
-        writer.append("\r\n");
-        //换行
-        
-        writer.append("材料：" + material);
-        writer.append("\r\n");
-        writer.append("\r\n");
-        writer.append("\r\n");
-        // 刷新缓存冲,写入到文件,如果下面已经没有写入的内容了,直接close也会写入
-
-        writer.close();
-        //关闭写入流,同时会把缓冲区内容写入文件,所以上面的注释掉
-        
-        fop.close();*/
-        // 关闭输出流,释放系统资源
-        
-        
+     
 	}
 
 	/**

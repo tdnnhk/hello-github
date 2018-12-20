@@ -2,7 +2,9 @@ package com.tomcatTest;
 
 import java.sql.DriverManager;
 import java.sql.ResultSet;
+import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 import com.mysql.jdbc.Connection;
 import com.mysql.jdbc.PreparedStatement;
@@ -10,12 +12,12 @@ import com.mysql.jdbc.PreparedStatement;
 public class DatabaseOperation {
     
     public static void main(String args[]) {
-        DatabaseOperation.getAll();
+        DatabaseOperation.getContent();
         //DatabaseOperation.insert(new FoodModel("鹌鹑蛋", "鹌鹑蛋", "直接煮"));
-        DatabaseOperation.getAll();
+        //DatabaseOperation.getAll();
         //DatabaseOperation.update(new Student("Bean", "", "7"));
         //DatabaseOperation.delete("Achilles");
-        DatabaseOperation.getAll();
+        //DatabaseOperation.getAll();
     }
     
     
@@ -26,10 +28,8 @@ public class DatabaseOperation {
         String password = "mysql";
         Connection conn = null;
         try {
-            System.out.println("in try");
             Class.forName(driver); //classLoader,加载对应驱动
             conn = (Connection) DriverManager.getConnection(url, username, password);
-            System.out.println("conn"+conn);
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
         } catch (SQLException e) {
@@ -46,7 +46,6 @@ public class DatabaseOperation {
         try {
             pstmt = (PreparedStatement) conn.prepareStatement(sql);
             pstmt.setString(1, food.getTitle());
-            System.out.println("food.getTitle()"+food.getTitle());
             pstmt.setString(2, food.getMaterial());
             pstmt.setString(3, food.getMethod());
             i = pstmt.executeUpdate();
@@ -66,7 +65,6 @@ public class DatabaseOperation {
         try {
             pstmt = (PreparedStatement) conn.prepareStatement(sql);
             i = pstmt.executeUpdate();
-            System.out.println("resutl: " + i);
             pstmt.close();
             conn.close();
         } catch (SQLException e) {
@@ -83,7 +81,6 @@ public class DatabaseOperation {
         try {
             pstmt = (PreparedStatement) conn.prepareStatement(sql);
             i = pstmt.executeUpdate();
-            System.out.println("resutl: " + i);
             pstmt.close();
             conn.close();
         } catch (SQLException e) {
@@ -94,7 +91,6 @@ public class DatabaseOperation {
     
     private static Integer getAll() {
         Connection conn = getConn();
-        System.out.println("has connected"+conn);
         String sql = "select * from foodmenutest";
         PreparedStatement pstmt;
         try {
@@ -113,6 +109,37 @@ public class DatabaseOperation {
                 System.out.println("");
             }
                 System.out.println("============================");
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+    
+    public static ArrayList<FoodModel> getContent() {
+        Connection conn = getConn();
+        String sql = "select * from foodmenutest";
+        PreparedStatement pstmt;
+        ArrayList<FoodModel> foodList = new ArrayList<FoodModel>();
+        try {
+            conn.prepareStatement("use whatseat");
+            pstmt = (PreparedStatement)conn.prepareStatement(sql);
+            ResultSet rs = pstmt.executeQuery();
+            int col = rs.getMetaData().getColumnCount();            
+            while (rs.next()) {
+                FoodModel fm = new FoodModel();
+                for (int i = 2; i <= col; i++) {
+                    String columnName = rs.getString(i);
+                    if(i==2) {
+                        fm.setTitle(columnName);
+                    }else if (i==3) {
+                        fm.setMaterial(columnName);
+                    }else if (i==4) {
+                        fm.setMethod(columnName);
+                    }
+                 }
+                foodList.add(fm);
+            }
+            return foodList;
         } catch (SQLException e) {
             e.printStackTrace();
         }
