@@ -28,6 +28,14 @@
     <servlet-name>FoodMenu</servlet-name>
     <url-pattern>/FoodMenu</url-pattern>
   </servlet-mapping>
+    <servlet>
+    <servlet-name>DeleteFood</servlet-name>
+    <servlet-class>com.tomcatTest.DeleteFood</servlet-class>
+  </servlet>
+    <servlet-mapping>
+    <servlet-name>DeleteFood</servlet-name>
+    <url-pattern>/DeleteFood</url-pattern>
+  </servlet-mapping>
   <error-page>
     <error-code>404</error-code>
     <location>/ErrorHandler</location>

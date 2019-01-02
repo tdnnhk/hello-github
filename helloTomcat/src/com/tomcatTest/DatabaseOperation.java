@@ -11,14 +11,14 @@ import com.mysql.jdbc.PreparedStatement;
 
 public class DatabaseOperation {
     
-    public static void main(String args[]) {
-        DatabaseOperation.getContent();
+    /*public static void main(String args[]) {
+        DatabaseOperation.getAll();
         //DatabaseOperation.insert(new FoodModel("鹌鹑蛋", "鹌鹑蛋", "直接煮"));
         //DatabaseOperation.getAll();
         //DatabaseOperation.update(new Student("Bean", "", "7"));
         //DatabaseOperation.delete("Achilles");
         //DatabaseOperation.getAll();
-    }
+    }*/
     
     
     private static Connection getConn() {
@@ -57,7 +57,8 @@ public class DatabaseOperation {
         return i;
     }
     
-    private static int delete(String name) {
+    public static void delete(String name) {
+        System.out.println("in delete operation");
         Connection conn = getConn();
         int i = 0;
         String sql = "delete from foodmenutest where Name='" + name + "'";
@@ -70,7 +71,7 @@ public class DatabaseOperation {
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        return i;
+        return ;
     }
     
     private static int update(FoodModel food) {
