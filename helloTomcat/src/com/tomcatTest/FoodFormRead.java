@@ -50,23 +50,6 @@ public class FoodFormRead extends HttpServlet {
 	           out.println("<br>");
 	    }
 	    
-	    
-	    
-		/*response.setContentType("text/html;charset=UTF-8");
-		PrintWriter out = response.getWriter();
-		String pathName = "D:\\learn\\projects\\hello-github\\test.txt";
-		File fileName = new File(pathName);
-		InputStreamReader reader = new InputStreamReader(new FileInputStream(fileName),"UTF-8");
-		BufferedReader br = new BufferedReader(reader);
-		String line ="";
-		//每次调用readLine()就会跳到下一行，所以这里就刚好错过了菜名
-		while((line = br.readLine()) != null) {
-			//line = br.readLine();
-			//String lines =new String(line.getBytes("ISO8859-1"),"UTF-8");
-			System.out.println(line);
-			out.println(line+"<br>");
-		}*/
-		//out.println("test");
 		
 	}
 

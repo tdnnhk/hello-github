@@ -4,12 +4,25 @@
 		<meta charset="utf-8" />
 		<title>WhatsEats</title>
 	</head>
+	<script type="text/javascript" src="js/jquery-3.3.1.js"></script>
 	<body>
 		<div>
 			<a href="input.html">输入菜谱</a>
+			<a href="#" onclick="testDoc()">菜谱一览</a>
 		</div>
-		<form action="FoodFormRead" method="POST">
-			<button type=submit id="imporBtn">菜谱一览</button>
-		</form>
+
+		<div class="food-form">
+		</div>
+		
 	</body>
+	<script type="text/javascript">
+
+	testDoc  = function (){  
+		var url = "/helloTomcat/FoodFormRead";
+        $.get(url ,function(data){
+            $('.food-form').html(data);
+        })
+    }  
+
+	</script>
 </html>
