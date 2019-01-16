@@ -1,17 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <web-app xmlns:web="http://xmlns.jcp.org/xml/ns/javaee">
-<!--   <filter>
-    <filter-name>FilterTest</filter-name>
-    <filter-class>com.tomcatTest.FilterTest</filter-class>
-    <init-param>
-      <param-name>Site</param-name>
-      <param-value>菜鸟教程</param-value>
-    </init-param>
-  </filter>
-  <filter-mapping>
-    <filter-name>FilterTest</filter-name>
-    <url-pattern>/*</url-pattern>
-  </filter-mapping> -->
+
   <servlet>
     <servlet-name>FoodFormRead</servlet-name>
     <servlet-class>com.tomcatTest.FoodFormRead</servlet-class>
@@ -21,12 +10,12 @@
     <url-pattern>/FoodFormRead</url-pattern>
   </servlet-mapping>
   <servlet>
-    <servlet-name>FoodMenu</servlet-name>
-    <servlet-class>com.tomcatTest.FoodMenu</servlet-class>
+    <servlet-name>FoodMenuOperation</servlet-name>
+    <servlet-class>com.tomcatTest.FoodMenuOperation</servlet-class>
   </servlet>
   <servlet-mapping>
-    <servlet-name>FoodMenu</servlet-name>
-    <url-pattern>/FoodMenu</url-pattern>
+    <servlet-name>FoodMenuOperation</servlet-name>
+    <url-pattern>/FoodMenuOperation</url-pattern>
   </servlet-mapping>
     <servlet>
     <servlet-name>DeleteFood</servlet-name>

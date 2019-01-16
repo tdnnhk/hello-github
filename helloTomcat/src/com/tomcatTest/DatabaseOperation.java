@@ -58,7 +58,6 @@ public class DatabaseOperation {
     }
     
     public static void delete(String name) {
-        System.out.println("in delete operation");
         Connection conn = getConn();
         int i = 0;
         String sql = "delete from foodmenutest where Name='" + name + "'";
