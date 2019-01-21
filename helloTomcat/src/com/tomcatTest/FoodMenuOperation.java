@@ -32,6 +32,8 @@ public class FoodMenuOperation extends HttpServlet {
             addFood(request,response);
         }else if (type.equals("DeleteFood")) {
             deleteFood(request,response);
+        }else if (type.equals("randomFood")) {
+            randomFood(request,response);
         }
      
 	}
@@ -48,9 +50,11 @@ public class FoodMenuOperation extends HttpServlet {
             String title = "输入成功！";
             
             // 处理中文
-            String name =new String(request.getParameter("cook-name").getBytes("ISO8859-1"),"UTF-8");
-            String material =new String(request.getParameter("material").getBytes("ISO8859-1"),"UTF-8");  
-            String method =new String(request.getParameter("method").getBytes("ISO8859-1"),"UTF-8");        
+            String name =new String(request.getParameter("cook-name"));
+            String material =new String(request.getParameter("material"));  
+            String method =new String(request.getParameter("method"));
+            
+            System.out.println(name);
             
             String docType = "<!DOCTYPE html> \n";
             out.println(docType +
@@ -86,13 +90,33 @@ public class FoodMenuOperation extends HttpServlet {
         String name;
         try {
             PrintWriter out = response.getWriter();
-            name = new String(request.getParameter("cook-name").getBytes("ISO8859-1"),"UTF-8");
+            name = new String(request.getParameter("cook-name"));
             if(name!=null && name!="") {
                 DatabaseOperation.delete(name);
                 out.println(title);
             }else {
                 out.println("请输入正确内容");
             }
+        } catch (IOException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+        
+    }
+	
+	private void randomFood(HttpServletRequest request, HttpServletResponse response) {
+	       
+        // 处理中文
+        //String name;
+        try {
+            PrintWriter out = response.getWriter();
+            FoodModel food = DatabaseOperation.getRandomRow();
+            out.println("<br>");
+            out.println("菜名："+food.getTitle());
+            out.println("材料："+food.getMaterial());
+            out.println("做法："+food.getMethod());
+            out.println("<br>");
+
         } catch (IOException e) {
             // TODO Auto-generated catch block
             e.printStackTrace();
