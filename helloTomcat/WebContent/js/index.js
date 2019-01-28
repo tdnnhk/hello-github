@@ -1,5 +1,4 @@
 $(function() {
-	console.log("input");
 	
 	foodMenu  = function (){  
         var url = "/helloTomcat/FoodFormRead";

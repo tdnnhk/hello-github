@@ -1,7 +1,6 @@
 package com.tomcatTest;
 
 public class FoodModel {
-    private String Id;
     private String title;
     private String material;
     private String method;

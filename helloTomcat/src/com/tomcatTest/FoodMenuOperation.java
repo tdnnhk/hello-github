@@ -54,8 +54,6 @@ public class FoodMenuOperation extends HttpServlet {
             String material =new String(request.getParameter("material"));  
             String method =new String(request.getParameter("method"));
             
-            System.out.println(name);
-            
             String docType = "<!DOCTYPE html> \n";
             out.println(docType +
                 "<html>\n" +

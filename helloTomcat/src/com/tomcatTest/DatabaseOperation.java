@@ -1,5 +1,7 @@
 package com.tomcatTest;
 
+import java.io.UnsupportedEncodingException;
+import java.security.NoSuchAlgorithmException;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.ResultSetMetaData;
@@ -12,14 +14,28 @@ import com.mysql.jdbc.PreparedStatement;
 
 public class DatabaseOperation {
     
-    /*public static void main(String args[]) {
-        DatabaseOperation.getRandomRow();
-        //DatabaseOperation.insert(new FoodModel("鹌鹑蛋", "鹌鹑蛋", "直接煮"));
+    public static void main(String args[]) {
+        //DatabaseOperation.getRandomRow();
+        /*UserModel userModel = new UserModel();
+        userModel.setUsername("name");
+        userModel.setPassword("pass");
+        userModel.setSalt("salt");
+        DatabaseOperation.insertUser(userModel);*/
+        
+        try {
+
+            System.out.println(Md5SaltTool.validPassword("cd","D1B215D611F94ACB36DE2AB1578D41EC11B468A7B8EAD327C1ABD221"));
+
+        } catch (NoSuchAlgorithmException | UnsupportedEncodingException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+        
         //DatabaseOperation.getAll();
         //DatabaseOperation.update(new Student("Bean", "", "7"));
         //DatabaseOperation.delete("Achilles");
         //DatabaseOperation.getAll();
-    }*/
+    }
     
     
     private static Connection getConn() {
@@ -206,4 +222,44 @@ public class DatabaseOperation {
         return null;
         
     }
+    
+    
+    
+    
+    
+    
+    
+    //user part
+    public static int insertUser(UserModel user) {
+        Connection conn = getConn();        
+        int i = 0;
+        String sql = "insert into usertable (username,password,salt) values(?,?,?)";
+        PreparedStatement pstmt;
+        try {
+            pstmt = (PreparedStatement) conn.prepareStatement(sql);
+            pstmt.setString(1, user.getUsername());
+            pstmt.setString(2, user.getPassword());
+            pstmt.setString(3, user.getSalt());
+            i = pstmt.executeUpdate();
+            pstmt.close();
+            conn.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return i;
+    }
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
 }
