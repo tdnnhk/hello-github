@@ -249,6 +249,43 @@ public class DatabaseOperation {
         return i;
     }
     
+  //user part
+    public static UserModel getPasswordInDb(String username) {
+        Connection conn = getConn();        
+        //int i = 0;
+        String sql = "select * from usertable where username = '" + username + "'";
+        PreparedStatement pstmt;
+        UserModel um = new UserModel();
+        try {
+            pstmt = (PreparedStatement) conn.prepareStatement(sql);            
+            ResultSet rs = pstmt.executeQuery();            
+            rs.next();
+            
+            //FoodModel fm = new FoodModel();
+            if(rs != null) {
+                int col = rs.getMetaData().getColumnCount(); 
+                System.out.println(col);
+                for (int i = 2; i <= col; i++) {
+                    String columnName = rs.getString(i);
+                    if(i==2) {
+                        um.setUsername(columnName);
+                    }else if (i==3) {
+                        um.setPassword(columnName);
+                    }else if (i==4) {
+                        um.setSalt(columnName);
+                    }
+                 }
+            }
+            
+            
+            pstmt.close();
+            conn.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return um;
+    }
+    
     
     
     

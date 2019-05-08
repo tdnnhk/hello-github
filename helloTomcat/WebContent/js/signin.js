@@ -1,5 +1,19 @@
 $(function() {
 	
+	signin = function(){
+    	var url = '/helloTomcat/UserOperation';
+    	var uesrname = $('.uesrname').val();
+    	var password = $('.password').val();
+    	var type = "signin";
+    	
+    	if(isnull(uesrname) || isnull(password)){
+    		alert("请完整输入内容");
+    	}else{
+    		$.get(url, {'type':type,'uesrname':uesrname,'password':password},function(data){
+    			alert("登录成功");
+    		})
+    	}
+	}
 	
 	submitInfo  = function (){
     	var url = '/helloTomcat/UserOperation';

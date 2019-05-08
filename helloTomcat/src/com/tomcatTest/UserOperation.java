@@ -34,11 +34,13 @@ public class UserOperation extends HttpServlet {
         String type = request.getParameter("type");
         
         if (type.equals("submitInfo")) {
+            signUp(request,response);
+        }else if (type.equals("signin")) {
             signIn(request,response);
         }
 	}
 
-	private void signIn(HttpServletRequest request, HttpServletResponse response) {
+	private void signUp(HttpServletRequest request, HttpServletResponse response) {
 	    
 	    String name = request.getParameter("uesrname");
 	    String pass = request.getParameter("password");
@@ -48,6 +50,28 @@ public class UserOperation extends HttpServlet {
             userModel = Md5SaltTool.getEncryptedPwd(pass);
             userModel.setUsername(name);
             DatabaseOperation.insertUser(userModel);
+        } catch (NoSuchAlgorithmException | UnsupportedEncodingException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+    
+    }
+	
+	private void signIn(HttpServletRequest request, HttpServletResponse response) {
+        
+        String name = request.getParameter("uesrname");
+        String pass = request.getParameter("password");
+        
+        //需要写从数据库通过用户名获取密码的function
+        UserModel userModel = new UserModel();
+        try {
+            userModel = DatabaseOperation.getPasswordInDb(name);
+            if(Md5SaltTool.validPassword(pass,userModel.getPassword())) {
+                System.out.println("correct");
+            }else {
+                System.out.println("wrong");
+            }
+
         } catch (NoSuchAlgorithmException | UnsupportedEncodingException e) {
             // TODO Auto-generated catch block
             e.printStackTrace();
