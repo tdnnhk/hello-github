@@ -23,7 +23,15 @@
   <servlet-mapping>
     <servlet-name>DeleteFood</servlet-name>
     <url-pattern>/DeleteFood</url-pattern>
-  </servlet-mapping>
+   </servlet-mapping>
+    <servlet>
+    <servlet-name>SessionTest</servlet-name>
+    <servlet-class>com.tomcatTest.SessionTest</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>SessionTest</servlet-name>
+    <url-pattern>/SessionTest</url-pattern>
+  </servlet-mapping> 
   <error-page>
     <error-code>404</error-code>
     <location>/ErrorHandler</location>

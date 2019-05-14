@@ -58,13 +58,15 @@ public class DatabaseOperation {
     public static int insert(FoodModel food) {
         Connection conn = getConn();        
         int i = 0;
-        String sql = "insert into foodmenutest (name,material,method) values(?,?,?)";
+        String sql = "insert into foodmenutest (name,material,method,user_id) values(?,?,?,?)";
         PreparedStatement pstmt;
         try {
             pstmt = (PreparedStatement) conn.prepareStatement(sql);
             pstmt.setString(1, food.getTitle());
             pstmt.setString(2, food.getMaterial());
             pstmt.setString(3, food.getMethod());
+            pstmt.setString(4, food.getUsername());
+            
             i = pstmt.executeUpdate();
             pstmt.close();
             conn.close();
@@ -223,7 +225,59 @@ public class DatabaseOperation {
         
     }
     
+    //根据用户名获取id
+    public static String getUserId(String username) {
+        Connection conn = getConn();
+        String sql = "SELECT user.id FROM whatseat.usertable user where user.username = " + username;
+        PreparedStatement pstmt;
+        String userId = null;
+        try {
+            conn.prepareStatement("use whatseat");
+            pstmt = (PreparedStatement)conn.prepareStatement(sql);
+            ResultSet rs = pstmt.executeQuery();        
+            while (rs.next()) {
+                userId = rs.getString("id");
+            }
+            rs.close();         
+            
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }finally {
+            return userId;
+        }
+    }
     
+    
+    //根据id返回列表
+    @SuppressWarnings("finally")
+    public static ArrayList<FoodModel> getUserFoodList(String id) {
+        Connection conn = getConn();
+        String sql = "SELECT food.name, food.material,food.method FROM whatseat.foodmenutest food where food.user_id = " + id;        
+        PreparedStatement pstmt;
+        ArrayList<FoodModel> foodList = new ArrayList<FoodModel>();
+        try {
+            conn.prepareStatement("use whatseat");
+            pstmt = (PreparedStatement)conn.prepareStatement(sql);
+            ResultSet rs = pstmt.executeQuery();        
+            
+            while (rs.next()) {
+                //System.out.println("name: "+rs.getString("name"));
+                FoodModel fm = new FoodModel();
+                fm.setTitle(rs.getString("name"));
+                fm.setMaterial(rs.getString("material"));
+                fm.setMethod(rs.getString("method"));
+                //fm.setUsername(rs.getString("username"));
+                
+                foodList.add(fm);
+            }
+            rs.close();         
+            
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }finally {
+            return foodList;
+        }
+    }
     
     
     

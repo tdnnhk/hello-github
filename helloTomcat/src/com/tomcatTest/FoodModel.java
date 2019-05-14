@@ -4,6 +4,7 @@ public class FoodModel {
     private String title;
     private String material;
     private String method;
+    private String username;
     
 /*    FoodModel(){
         this.Id = null; //default
@@ -29,6 +30,12 @@ public class FoodModel {
     }
     public void setMethod(String method) {
         this.method = method;
+    }
+    public String getUsername() {
+        return username;
+    }
+    public void setUsername(String username) {
+        this.username = username;
     }
     
     

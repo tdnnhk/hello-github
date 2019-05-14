@@ -9,6 +9,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  * Servlet implementation class UserOperation
@@ -35,8 +36,10 @@ public class UserOperation extends HttpServlet {
         
         if (type.equals("submitInfo")) {
             signUp(request,response);
-        }else if (type.equals("signin")) {
+        } else if (type.equals("signin")) {
             signIn(request,response);
+        } else if (type.equals("userinfo")) {
+            getUserInfo(request, response);
         }
 	}
 
@@ -50,6 +53,8 @@ public class UserOperation extends HttpServlet {
             userModel = Md5SaltTool.getEncryptedPwd(pass);
             userModel.setUsername(name);
             DatabaseOperation.insertUser(userModel);
+            HttpSession session = request.getSession();
+            session.setAttribute("loginName", name);
         } catch (NoSuchAlgorithmException | UnsupportedEncodingException e) {
             // TODO Auto-generated catch block
             e.printStackTrace();
@@ -67,16 +72,30 @@ public class UserOperation extends HttpServlet {
         try {
             userModel = DatabaseOperation.getPasswordInDb(name);
             if(Md5SaltTool.validPassword(pass,userModel.getPassword())) {
-                System.out.println("correct");
+                response.getWriter().write("correct");
+                HttpSession session = request.getSession();
+                session.setAttribute("loginName", name);
+                //response.sendRedirect(request.getContextPath()+"/user.html");
+                System.out.println("correct"+request.getContextPath());
             }else {
+                response.getWriter().write("wrong");
                 System.out.println("wrong");
             }
 
         } catch (NoSuchAlgorithmException | UnsupportedEncodingException e) {
             // TODO Auto-generated catch block
             e.printStackTrace();
+        } catch (IOException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
         }
     
+    }
+	
+	private void getUserInfo (HttpServletRequest request, HttpServletResponse response) {
+	    HttpSession session = request.getSession();
+	    String userName = session.getAttribute("loginName").toString();
+	    DatabaseOperation.getUserFoodList(userName);
     }
 
     /**

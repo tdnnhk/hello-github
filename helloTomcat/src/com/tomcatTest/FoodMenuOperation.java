@@ -12,6 +12,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 
 //@WebServlet("/FoodMenuOperation")
@@ -47,14 +48,17 @@ public class FoodMenuOperation extends HttpServlet {
 	    PrintWriter out;
         try {
             out = response.getWriter();
-            String title = "输入成功！";
+            //String title = "输入成功！";
+            HttpSession session = request.getSession();
             
             // 处理中文
             String name =new String(request.getParameter("cook-name"));
             String material =new String(request.getParameter("material"));  
             String method =new String(request.getParameter("method"));
-            
-            String docType = "<!DOCTYPE html> \n";
+            String username = session.getAttribute("loginName").toString();
+            String id = DatabaseOperation.getUserId(username);
+            System.out.println("username："+username); 
+            /*String docType = "<!DOCTYPE html> \n";
             out.println(docType +
                 "<html>\n" +
                 "<head><title>" + title + "</title></head>\n" +
@@ -68,11 +72,12 @@ public class FoodMenuOperation extends HttpServlet {
                 "  <li><b>做法</b>："
                 + method + "\n" +
                 "</ul>\n" +
-                "</body></html>");
+                "</body></html>");*/
             FoodModel food = new FoodModel();
             food.setTitle(name);
             food.setMaterial(material);
             food.setMethod(method);
+            food.setUsername(id);
             DatabaseOperation.insert(food);
         } catch (IOException e) {
             // TODO Auto-generated catch block

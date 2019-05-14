@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>用户信息</title>
+        <script type="text/javascript" src="js/jquery-3.3.1.js"></script>
+        <script type="text/javascript" src="js/user.js"></script>
+    </head>
+    <body>
+        <div>
+            <span>用户名：</span>
+        </div>
+        
+        
+        
+        <ul>
+            <li>
+                菜名：<input class="title" type="text" name="cook-name"/>
+            </li>
+            <li>
+                材料：
+                <textarea class="material" name="material"></textarea>
+            </li>
+                <li>
+                                       做法：
+                   <textarea class="method" name="method"></textarea>
+               </li> 
+        </ul>
+        <input type="submit" onclick="submitMenu()" value="提交菜谱">
+        <input type="button" onclick="clearTextbox()" value="清除">
+
+        <!-- 目前根据菜名删除实在太丧，应该要有删除按钮，并弹框 -->
+<!--         <ul>
+            <li>
+                    菜名：<input type="text" class="deleteFood" name="cook-name"/>
+            </li>
+        </ul>
+        <input type="submit" onclick="deleteFood()" value="删除">   -->      
+        
+        <div class="food-form">
+            <span>菜谱列表：</span>
+            <div class="food-list">
+	            <table border="1px solid">
+	                <tr>
+	                    <th>名字</th>
+	                    <th>材料</th>
+	                    <th>做法</th>
+	                  </tr>
+	            </table>
+            </div>
+        </div>
+        
+    </body>
+    
+</html>
